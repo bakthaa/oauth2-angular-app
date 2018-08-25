@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
+          <h5 class="card-title">Users</h5>
+          <i class="fa fa-plus-square fa-lg" (click)="showAdd()"></i>
+        </div>
+        <oaas-user-list *ngIf="userActionFlag"></oaas-user-list>
+        <oaas-user-add *ngIf="!userActionFlag"></oaas-user-add>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
+          <h5 class="card-title">Clients</h5>
+          <i class="fa fa-plus-square fa-lg" href="#"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

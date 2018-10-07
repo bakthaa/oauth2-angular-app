@@ -1,0 +1,20 @@
+<form [formGroup]="clientAddForm" (ngSubmit) = "onSubmit()">
+  <oaas-text labelTxt="Resource" rowClass="form-group row"
+    name="resourceId" [group]="clientAddForm"></oaas-text>
+
+
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary btn-sm"
+        [disabled]="!clientAddForm.valid">Save</button>
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <button type="button" class="btn btn-secondary btn-sm">Cancle</button>
+    </div>
+
+    <!-- <div class="row">
+      <div class="col-sm-6">Cancel</div>
+      <div class="col-sm-6">
+        <button type="submit" [disabled]="!clientAddForm.valid">Submit</button>
+      </div>
+    </div> -->
+
+</form>

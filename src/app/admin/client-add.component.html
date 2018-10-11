@@ -1,16 +1,79 @@
-<form [formGroup]="clientAddForm" (ngSubmit) = "onSubmit()">
-  <oaas-text labelTxt="Resource" rowClass="form-group row"
-    name="resourceId" [group]="clientAddForm"></oaas-text>
+<form [formGroup]="clientAddForm" (ngSubmit)="onSubmit()">
 
-
-    <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-primary btn-sm"
-        [disabled]="!clientAddForm.valid">Save</button>
-      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      <button type="button" class="btn btn-secondary btn-sm">Cancle</button>
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Resource Id</label>
+    <div class="col-sm-8">
+      <input formControlName="resourceId" type="text" class="form-control form-control-sm" placeholder="resourceId" [ngClass]="{ 'is-invalid': clientAddForm.controls.resourceId.errors }" />
+      <div *ngIf="submitted || (clientAddForm.controls.resourceId.errors
+        && clientAddForm.controls.resourceId.touched)" class="invalid-feedback">
+        <div *ngIf="clientAddForm.controls.resourceId.errors.required">Resource Id is required</div>
+        <div *ngIf="clientAddForm.controls.resourceId.errors.minlength">Atleast 7 char</div>
+        <div *ngIf="clientAddForm.controls.resourceId.errors.maxlength">Exceeded 25 char</div>
+      </div>
     </div>
+  </div>
 
-    <!-- <div class="row">
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Client Id</label>
+    <div class="col-sm-8">
+      <input formControlName="clientId" type="text" class="form-control form-control-sm" placeholder="clientId" [ngClass]="{ 'is-invalid': clientAddForm.controls.clientId.errors }" />
+      <div *ngIf="submitted || (clientAddForm.controls.clientId.errors
+          && clientAddForm.controls.clientId.touched)" class="invalid-feedback">
+        <div *ngIf="clientAddForm.controls.clientId.errors.required">Client Id required</div>
+        <div *ngIf="clientAddForm.controls.clientId.errors.minlength">Atleast 7 char</div>
+        <div *ngIf="clientAddForm.controls.clientId.errors.maxlength">Exceeded 25 char</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Client Secret</label>
+    <div class="col-sm-8">
+      <input formControlName="clientSec" type="text" class="form-control form-control-sm" placeholder="clientSec" [ngClass]="{ 'is-invalid': clientAddForm.controls.clientSec.errors }" />
+      <div *ngIf="submitted || (clientAddForm.controls.clientSec.errors
+            && clientAddForm.controls.clientSec.touched)" class="invalid-feedback">
+        <div *ngIf="clientAddForm.controls.clientSec.errors.required">Client Secret is required</div>
+        <div *ngIf="clientAddForm.controls.clientSec.errors.minlength">Atleast 7 char</div>
+        <div *ngIf="clientAddForm.controls.clientSec.errors.maxlength">Exceeded 25 char</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Re-Client Secret</label>
+    <div class="col-sm-8">
+      <input formControlName="reClientSec" type="text" class="form-control form-control-sm" placeholder="reClientSec"
+      [ngClass]="{ 'is-invalid': clientAddForm.controls.reClientSec.errors }" />
+      <div *ngIf="submitted || (clientAddForm.controls.reClientSec.errors
+            && clientAddForm.controls.reClientSec.touched)" class="invalid-feedback">
+        <div *ngIf="clientAddForm.controls.reClientSec.errors.required">Re-Client Secret is required</div>
+        <div *ngIf="clientAddForm.controls.reClientSec.errors.minlength">Atleast 7 char</div>
+        <div *ngIf="clientAddForm.controls.reClientSec.errors.maxlength">Exceeded 25 char</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Validity</label>
+    <div class="col-sm-8">
+      <input formControlName="validity" type="text" class="form-control form-control-sm" placeholder="validity" [ngClass]="{ 'is-invalid': clientAddForm.controls.validity.errors }" />
+      <div *ngIf="submitted || (clientAddForm.controls.validity.errors
+            && clientAddForm.controls.validity.touched)" class="invalid-feedback">
+        <div *ngIf="clientAddForm.controls.validity.errors.required">Validity is required</div>
+        <div *ngIf="clientAddForm.controls.validity.errors.maxlength">Exceeded 6 char</div>
+        <div *ngIf="clientAddForm.controls.validity.errors.pattern">Number Only</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+    <!-- [disabled]="!clientAddForm.valid" -->
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button type="button" class="btn btn-secondary btn-sm">Cancel</button>
+  </div>
+
+  <!-- <div class="row">
       <div class="col-sm-6">Cancel</div>
       <div class="col-sm-6">
         <button type="submit" [disabled]="!clientAddForm.valid">Submit</button>

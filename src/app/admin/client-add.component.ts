@@ -11,7 +11,7 @@ import { HtmlFormControl } from './../form/html-form-control';
 export class ClientAddComponent implements OnInit {
 
   clientAddForm: FormGroup;
-  submitted:boolean;
+  submitted: boolean;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -26,12 +26,23 @@ export class ClientAddComponent implements OnInit {
       clientSec: new FormControl('',
         [Validators.required, Validators.minLength(8), Validators.maxLength(25)]),
       reClientSec: new FormControl('',
-        [Validators.required, Validators.minLength(8), Validators.maxLength(25)])
+        [Validators.required, Validators.minLength(8), Validators.maxLength(25)]),
+      validity: new FormControl('',
+        [Validators.required, Validators.maxLength(6), Validators.pattern('^[0-9]+$')])
 
     });
     // this.clientAddForm.updateValueAndValidity
 
     console.log(this.clientAddForm)
+  }
+
+  onSubmit(): void {
+
+    console.log(this.clientAddForm.value);
+    this.submitted = true;
+    if (this.clientAddForm.invalid) {
+      return;
+    }
   }
 
 }

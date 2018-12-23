@@ -4,10 +4,10 @@
       <div class="card-body">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
           <h5 class="card-title">Users</h5>
-          <i class="fa fa-plus-square fa-lg" (click)="userToggle=true"></i>
+          <i class="fa fa-plus-square fa-lg" (click)="userAddToggle=true"></i>
         </div>
-        <oaas-user-list *ngIf="userToggle"></oaas-user-list>
-        <oaas-user-add *ngIf="!userToggle"></oaas-user-add>
+        <oaas-user-add *ngIf="userAddToggle"></oaas-user-add>
+        <oaas-user-list *ngIf="!userAddToggle"></oaas-user-list>
       </div>
     </div>
   </div>
@@ -16,10 +16,10 @@
       <div class="card-body">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
           <h5 class="card-title">Clients</h5>
-          <i class="fa fa-plus-square fa-lg" (click)="clientToggle=true"></i>
+          <i class="fa fa-plus-square fa-lg" (click)="clientAddToggle=true"></i>
         </div>
-        <oaas-client-list *ngIf="clientToggle"></oaas-client-list>
-        <oaas-client-add *ngIf="!clientToggle"></oaas-client-add>
+        <oaas-client-list *ngIf="!clientAddToggle"></oaas-client-list>
+        <oaas-client-add *ngIf="clientAddToggle"></oaas-client-add>
       </div>
     </div>
   </div>

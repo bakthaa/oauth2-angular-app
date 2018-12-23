@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,9 +11,7 @@ import { UserAddComponent } from './admin/user-add.component';
 import { UserListComponent } from './admin/user-list.component';
 import { ClientAddComponent } from './admin/client-add.component';
 import { ClientListComponent } from './admin/client-list.component';
-import { FormModule } from './form/form.module'
-
-
+import { NumberOnlyDirective } from './directive/number-only.directive';
 
 @NgModule({
   declarations: [
@@ -24,13 +22,13 @@ import { FormModule } from './form/form.module'
     UserListComponent,
     ClientAddComponent,
     ClientListComponent,
+    NumberOnlyDirective,
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
-    FormModule
+    ReactiveFormsModule,
+    // NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

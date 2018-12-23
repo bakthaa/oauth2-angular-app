@@ -10,14 +10,14 @@ export class AdminComponent implements OnInit {
   private _userActionFlag:boolean;
   private _clientActionFlag:boolean;
 
-  get userToggle() { return this._userActionFlag; }
+  get userAddToggle() { return this._userActionFlag; }
 
-  set userToggle(arg: boolean) { this._userActionFlag = arg; }
+  set userAddToggle(arg: boolean) { this._userActionFlag = arg; }
 
 
-  get clientToggle() { return this._clientActionFlag; }
+  get clientAddToggle() { return this._clientActionFlag; }
 
-  set clientToggle(arg: boolean) { this._clientActionFlag = arg; }
+  set clientAddToggle(arg: boolean) { this._clientActionFlag = arg; }
 
   constructor() { }
 

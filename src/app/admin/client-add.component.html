@@ -1,16 +1,122 @@
-<form [formGroup]="clientAddForm" (ngSubmit) = "onSubmit()">
-  <oaas-text labelTxt="Resource" rowClass="form-group row"
-    name="resourceId" [group]="clientAddForm"></oaas-text>
+<form [formGroup]="f" (ngSubmit)="onSubmit()">
 
-
-    <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-primary btn-sm"
-        [disabled]="!clientAddForm.valid">Save</button>
-      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      <button type="button" class="btn btn-secondary btn-sm">Cancle</button>
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Resource Id</label>
+    <div class="col-sm-8">
+      <input formControlName="resourceId" type="text" class="form-control form-control-sm" placeholder="Resource ID" [ngClass]="{ 'is-invalid': f.controls.resourceId.errors }">
+      <div *ngIf="submitted || (f.controls.resourceId.errors
+          && f.controls.resourceId.dirty)" class="invalid-feedback">
+        <div *ngIf="f.controls.resourceId.errors?.required">Resource ID is required</div>
+        <div *ngIf="f.controls.resourceId.errors?.minlength">Atleast 7 char</div>
+        <div *ngIf="f.controls.resourceId.errors?.maxlength">Exceeded 25 char</div>
+      </div>
     </div>
+  </div>
 
-    <!-- <div class="row">
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Client ID</label>
+    <div class="col-sm-8">
+      <input formControlName="clientId" type="text" class="form-control form-control-sm" placeholder="Client ID" [ngClass]="{ 'is-invalid': f.controls.clientId.errors }">
+      <div *ngIf="submitted || (f.controls.clientId.errors
+          && f.controls.clientId.dirty)" class="invalid-feedback">
+        <div *ngIf="f.controls.clientId.errors?.required">Client ID is required</div>
+        <div *ngIf="f.controls.clientId.errors?.minlength">Atleast 7 char</div>
+        <div *ngIf="f.controls.clientId.errors?.maxlength">Exceeded 25 char</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Client Sec: (Min 8)</label>
+    <div class="col-sm-8">
+      <input formControlName="clientSec" type="password" class="form-control form-control-sm" placeholder="Client Sec" [ngClass]="{ 'is-invalid': f.controls.clientSec.errors }">
+      <div *ngIf="submitted || ( f.controls.clientSec.errors && f.controls.clientSec.dirty )" class="invalid-feedback">
+        <div *ngIf="f.controls.clientSec.errors?.required">Client Sec is required</div>
+        <div *ngIf="f.controls.clientSec.errors?.minlength">Atleast 8 char</div>
+        <div *ngIf="f.controls.clientSec.errors?.maxlength">Exceeded 25 char</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Re-Client Sec</label>
+    <div class="col-sm-8">
+      <input formControlName="reClientSec" type="password" class="form-control form-control-sm" placeholder="Re-Client Sec" [ngClass]="{ 'is-invalid': f.controls.reClientSec.errors }">
+      <div *ngIf="submitted || ( f.controls.reClientSec.errors && f.controls.reClientSec.dirty )" class="invalid-feedback">
+        <div *ngIf="f.controls.reClientSec.errors?.required">Re-Client Sec is required</div>
+        <div *ngIf="f.controls.reClientSec.errors?.minlength">Atleast 8 char</div>
+        <div *ngIf="f.controls.reClientSec.errors?.maxlength">Exceeded 25 char</div>
+      </div>
+      <div *ngIf="submitted || f.controls.reClientSec.dirty">
+        <span *ngIf="f.errors?.pwdMisMatch" class="err">
+          Both passwords must be same.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label form-control-sm">Validity</label>
+    <div class="col-sm-8">
+      <input oaasNumberOnly formControlName="validity" type="text" class="form-control form-control-sm" placeholder="Validity" [ngClass]="{ 'is-invalid': f.controls.validity.errors }">
+      <div *ngIf="submitted || (f.controls.validity.errors
+          && f.controls.validity.dirty)" class="invalid-feedback">
+        <div *ngIf="f.controls.validity.errors?.required">Validity is required</div>
+        <div *ngIf="f.controls.validity.errors?.minlength">Atleast 2 length</div>
+        <div *ngIf="f.controls.validity.errors?.maxlength">Exceeded 5 length</div>
+      </div>
+    </div>
+  </div>
+
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label form-control-sm">Grand Types</label>
+  <div class="col-sm-8">
+    <div class="form-check" formArrayName="grandType" *ngFor="let grand of f.controls.grandType.controls; let i = index">
+      <input class="form-check-input" type="checkbox" [formControlName]="i">
+      <label class="form-check-label"> {{grandTypes[i].value}} &nbsp;</label>
+    </div>
+    <div *ngIf="submitted || f.controls.grandType.dirty">
+      <div *ngIf="f.controls.grandType.errors?.required" class="err">GrandType is required</div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label form-control-sm">Redirect-URL</label>
+  <div class="col-sm-8">
+    <input formControlName="redirectUrl" type="text" class="form-control form-control-sm" placeholder="Redirect-URL" [ngClass]="{ 'is-invalid': f.controls.redirectUrl.errors }">
+    <div *ngIf="submitted || (f.controls.redirectUrl.errors
+        && f.controls.redirectUrl.dirty)" class="invalid-feedback">
+      <div *ngIf="f.controls.redirectUrl.errors?.required">Redirect-URL is required</div>
+      <div *ngIf="f.controls.redirectUrl.errors?.minlength">Atleast 7 char</div>
+      <div *ngIf="f.controls.redirectUrl.errors?.maxlength">Exceeded 250 char</div>
+      <div *ngIf="f.controls.redirectUrl.errors?.url">In-valid URL</div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label form-control-sm">Scopes</label>
+  <div class="col-sm-8">
+    <div class="form-check" formArrayName="scopes" *ngFor="let grand of f.controls.scopes.controls; let i = index">
+      <input class="form-check-input" type="checkbox" [formControlName]="i">
+      <label class="form-check-label"> {{scopes[i].value}} &nbsp;</label>
+    </div>
+    <div *ngIf="submitted || f.controls.scopes.dirty">
+      <div *ngIf="f.controls.scopes.errors?.required" class="err">Scope is required</div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="d-flex justify-content-end">
+    <!-- [disabled]="!f.valid" -->
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button type="button" class="btn btn-secondary btn-sm">Cancle</button>
+  </div>
+
+  <!-- <div class="row">
       <div class="col-sm-6">Cancel</div>
       <div class="col-sm-6">
         <button type="submit" [disabled]="!clientAddForm.valid">Submit</button>
